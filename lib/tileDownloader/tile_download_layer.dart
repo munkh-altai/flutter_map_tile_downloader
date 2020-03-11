@@ -40,12 +40,11 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
   Bounds _globalTileRange;
   String _dir;
 
-  /**/
   double _minZoom = 8;
   double _maxZoom = 11;
   double _downloadProgress = 0;
   bool _downloading = false;
-  /**/
+
 
   @override
   initState() {
@@ -168,7 +167,6 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
         if (!_isValidTile(coords)) {
           continue;
         }
-        // Add all valid tiles to the queue on Flutter
         queue.add(coords);
       }
     }
@@ -236,12 +234,9 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
   }
 
   LatLng _offsetToCrs(Offset offset) {
-    // Get the widget's offset
     var renderObject = context.findRenderObject() as RenderBox;
     var width = renderObject.size.width;
     var height = renderObject.size.height;
-
-    // convert the point to global coordinates
     var localPoint = _offsetToPoint(offset);
     var localPointCenterDistance =
         CustomPoint((width / 2) - localPoint.x, (height / 2) - localPoint.y);
@@ -297,8 +292,6 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
         double zoomLevels = _maxZoom - _minZoom +1;
         double currentZoomLevel = i - _minZoom + 1;
 
-
-
         double currentPercent = (maxPercent/zoomLevels)*currentZoomLevel;
 
         setState(() {
@@ -331,8 +324,6 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
         }
 
       }
-
-    } else {
 
     }
 

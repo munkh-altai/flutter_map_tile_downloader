@@ -125,8 +125,8 @@ class _MyAppState extends State<MyApp> {
                       },
 
                       child: _tileSelecting
-                          ? Text("Tile download")
-                          : Text("Stop tile download")
+                          ? Text("Stop tile download")
+                          : Text("Tile download")
                   )),
               Visibility(
                 child: Positioned(
