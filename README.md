@@ -3,11 +3,11 @@
 Tile download  by drag draw area
 
 ## Features
-Area selection by drag draw
-Download multiple zoom levels
-Show download progress
-Download completed event
-Custom Texts
+### Area selection by drag draw
+### Download multiple zoom levels
+### Show download progress
+### Download completed event
+### Custom Texts
 
 ## Example image
 ![alt text](https://github.com/munkh-altai/flutter_map_tile_downloader/blob/master/example.png)
