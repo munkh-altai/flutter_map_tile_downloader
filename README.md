@@ -10,7 +10,9 @@ Tile download  by drag draw area
 ##### Custom Texts
 
 ## Example image
-![Example image](https://github.com/munkh-altai/flutter_map_tile_downloader/blob/master/example.png | width=200)
+<p align="center">
+  <img width="300"  src="https://github.com/munkh-altai/flutter_map_tile_downloader/blob/master/example.png">
+</p>
 
 ## Usage
 
