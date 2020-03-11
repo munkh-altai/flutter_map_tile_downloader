@@ -120,9 +120,7 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
     return crs.scale(toZoom) / crs.scale(fromZoom);
   }
 
-  Bounds _getTiledPixelBounds(LatLng center) {
-    return widget.map.getPixelBounds(_tileZoom);
-  }
+
 
   Bounds getBounds(double zoom) {
     var sX = xPos + width;
@@ -180,7 +178,7 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
       }
 
       await new Directory('${_dir}/offline_map').create()
-          // The created directory is returned as a Future.
+
           .then((Directory directory) async {
 
         for (var i = 0; i < queue.length; i++) {
@@ -189,40 +187,21 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
           await new Directory(
                   '${_dir}/offline_map/${queue[i].z.round().toString()}')
               .create()
-              // The created directory is returned as a Future.
+
               .then((Directory directory) async {
             await new Directory(
                     '${_dir}/offline_map/${queue[i].z.round().toString()}/${queue[i].x.round().toString()}')
                 .create()
-                // The created directory is returned as a Future.
+
                 .then((Directory directory) async {
               var savedTile = await _downloadFile(
                   url,
                   '${queue[i].y.round().toString()}.png',
                   '${_dir}/offline_map/${queue[i].z.round().toString()}/${queue[i].x.round().toString()}');
 
-
-
-
-
             });
 
-
           });
-
-//          var imageId = await ImageDownloader.downloadImage(
-//              url, destination: AndroidDestinationType.custom()
-//            ..inExternalFilesDir()
-//            ..subDirectory(
-//                "offline_map/${queue[i].z.round().toString()}/${queue[i].x
-//                    .round()
-//                    .toString()}/${queue[i].y.round().toString()}.png"));
-//
-//
-//          var path = await ImageDownloader.findPath(imageId);
-//          File sourceFile = File(path);
-//          print(sourceFile);
-//          print(url);
 
         }
       });
@@ -508,15 +487,13 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
 
                 var latLngN = _offsetToCrs(offsetN);
                 var latLngS = _offsetToCrs(offsetS);
-//                print(latLngN);
-//                print(latLngS);
+
 
                 saveData(latLngN, latLngS);
 
                 setState(() {
                   _dragging = false;
 
-//                  widget.options.onSelected(false);
                 });
 
 
@@ -550,10 +527,6 @@ class RectanglePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-//    var _paint = new Paint();
-//
-//    _paint.color = Colors.deepOrange;
-////    _paint.color = Color(0x00000000);
 
     Paint _paint = new Paint()
       ..color = Colors.blueAccent
