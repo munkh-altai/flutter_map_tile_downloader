@@ -4,7 +4,7 @@ description: Tile download by drag draw area. Features Area selection by drag dr
   Show download progress,
   Download completed event,
   Custom Texts)
-version: 0.0.4
+version: 0.0.5
 author: Khan Khulgun Team
 homepage: https://github.com/munkh-altai/flutter_map_tile_downloader
 
