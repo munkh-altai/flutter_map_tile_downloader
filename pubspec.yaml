@@ -10,10 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
   flutter_map: any # or the latest version on Pub
   dio: 3.0.8 #latest version
   permission_handler: any
@@ -21,6 +17,10 @@ dev_dependencies:
   path_provider: ^1.1.0
   shared_preferences: any
   percent_indicator: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
