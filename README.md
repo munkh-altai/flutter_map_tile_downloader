@@ -11,7 +11,7 @@ Tile download  by drag draw area
 
 ## Example image
 <p align="center">
-  <img width="300"  src="https://github.com/munkh-altai/flutter_map_tile_downloader/blob/master/example.png">
+  <img width="300"  src="https://raw.githubusercontent.com/munkh-altai/flutter_map_tile_downloader/master/example.png">
 </p>
 
 ## Usage

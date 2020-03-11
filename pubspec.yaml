@@ -1,6 +1,6 @@
 name: flutter_map_tile_downloader
 description: Tile download draw area by drag drop
-version: 0.0.1
+version: 0.0.2
 author: Khan Khulgun Team
 homepage: https://github.com/munkh-altai/flutter_map_tile_downloader
 
@@ -10,13 +10,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_map: any # or the latest version on Pub
-  dio: 3.0.8 #latest version
-  permission_handler: any
-  flutter_range_slider: any
+  flutter_map: ^0.8.2
+  dio: ^3.0.8
+  permission_handler: ^4.4.0
+  flutter_range_slider: ^1.4.0
   path_provider: ^1.1.0
-  shared_preferences: any
-  percent_indicator: any
+  shared_preferences: ^0.5.6+3
+  percent_indicator: ^2.1.1+1
 
 dev_dependencies:
   flutter_test:
