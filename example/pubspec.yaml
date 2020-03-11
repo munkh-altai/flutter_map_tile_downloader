@@ -17,15 +17,15 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_map: any # or the latest version on Pub
+  flutter_map: 0.8.2
   flutter_map_tile_downloader:
     path: ../
-  dio: 3.0.8 #latest version
-  permission_handler: any
-  flutter_range_slider: any
-  shared_preferences: any
-  percent_indicator: any
-  path_provider: ^1.1.0
+  dio: 3.0.9
+  permission_handler: 4.4.0
+  flutter_range_slider: 1.4.0
+  path_provider: 1.6.5
+  shared_preferences: 0.5.6+3
+  percent_indicator: ^2.1.1+1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

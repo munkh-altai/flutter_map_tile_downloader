@@ -6,7 +6,7 @@ import 'package:flutter_map/plugin_api.dart';
 import 'package:latlong/latlong.dart';
 import 'tile_download_layer_options.dart';
 
-import 'package:flutter_map/src/core/util.dart' as util;
+import 'package:flutter_map_tile_downloader/utils/util.dart' as util;
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
@@ -148,7 +148,7 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
     var pixelBounds = getBounds(zoom);
 
     var tileRange = _pxBoundsToTileRange(pixelBounds);
-    var tileCenter = tileRange.getCenter();
+
     var queue = <Coords>[];
 
     // mark tiles as out of view...
