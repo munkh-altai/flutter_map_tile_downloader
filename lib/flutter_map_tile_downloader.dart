@@ -1,4 +1,5 @@
 library flutter_map_tile_downloader;
+
 import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 export 'tileDownloader/tile_download_layer.dart';
@@ -16,11 +17,11 @@ class OfflineTile {
   });
 }
 
-Future<OfflineTile> getOfflineTileData() async{
+Future<OfflineTile> getOfflineTileData() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   return OfflineTile(
-        minZoom:prefs.getDouble('offline_min_zoom'),
-        maxZoom:prefs.getDouble('offline_max_zoom'),
-        urlTemplate:prefs.getString('offline_template_url'),
+    minZoom: prefs.getDouble('offline_min_zoom'),
+    maxZoom: prefs.getDouble('offline_max_zoom'),
+    urlTemplate: prefs.getString('offline_template_url'),
   );
 }

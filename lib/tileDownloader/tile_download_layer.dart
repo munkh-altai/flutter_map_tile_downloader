@@ -105,7 +105,7 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
     try {
       // prefer using rename as it is probably faster
       return await sourceFile.rename(newPath);
-    } on FileSystemException catch (e) {
+    } on FileSystemException catch (e){
       // if rename fails, copy the source file and then delete it
       final newFile = await sourceFile.copy(newPath);
       await sourceFile.delete();
@@ -128,12 +128,12 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
     final offsetNo = Offset(xPos, yPos);
     final offsetSs = Offset(sX, sY);
 
-    var No = _offsetToPoint2(offsetNo);
-    var Se = _offsetToPoint2(offsetSs);
+    var nO = _offsetToPoint2(offsetNo);
+    var sE = _offsetToPoint2(offsetSs);
 
     var scale = getZoomScale(zoom, widget.map.zoom);
 
-    return Bounds(No * scale, Se * scale);
+    return Bounds(nO * scale, sE * scale);
   }
 
   Future<File> _downloadFile(String url, String filename, String dir) async {
@@ -176,7 +176,6 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
       }
 
       await new Directory('${_dir}/offline_map').create()
-
           .then((Directory directory) async {
 
         for (var i = 0; i < queue.length; i++) {
