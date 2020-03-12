@@ -190,3 +190,10 @@ Usage example
 ### Run the example
 
 See the `example/` folder for a working example app.
+
+#### required permission for Android
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+#### required permission for IOS
+Storage
