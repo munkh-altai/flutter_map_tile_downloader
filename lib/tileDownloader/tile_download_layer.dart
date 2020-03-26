@@ -355,7 +355,7 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
     var DownloadBtn = Container(
       child: Stack(children: [
         Positioned(
-            top: 10,
+            top: 80,
             right: 10,
             child: Container(
                 padding: const EdgeInsets.all(10.0),
