@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 
-import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_tile_downloader/flutter_map_tile_downloader.dart';
 
@@ -76,9 +74,8 @@ class _MyAppState extends State<MyApp> {
     } else {
       layers.add(
       TileLayerOptions(
-        urlTemplate: 'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+        urlTemplate: 'https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
         subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-        tileProvider: CachedNetworkTileProvider(),
       )
       );
     }
@@ -87,7 +84,7 @@ class _MyAppState extends State<MyApp> {
       layers.add(
           TileDownloadLayerOptions(
             onComplete: onCompleted,
-            urlTemplate: 'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+            urlTemplate: 'https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
             subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
             minZoom: 8,
             maxZoom: 12,
@@ -99,7 +96,7 @@ class _MyAppState extends State<MyApp> {
 
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text('Tile downloader exmample')),
+        appBar: AppBar(title: Text('Tile downloader example')),
         body: Padding(
           padding: EdgeInsets.all(8.0),
           child: Stack(
@@ -119,7 +116,7 @@ class _MyAppState extends State<MyApp> {
               Positioned(
                   bottom: 65,
                   right: 10,
-                  child: RaisedButton(
+                  child: ElevatedButton(
                       onPressed: () {
                         startTileSelect(!_tileSelecting);
                       },
@@ -132,7 +129,7 @@ class _MyAppState extends State<MyApp> {
                 child: Positioned(
                     bottom: 120,
                     right: 10,
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       onPressed: (_off_line_tile.urlTemplate != null)
                           ? () {
                         showOffline();
@@ -141,7 +138,7 @@ class _MyAppState extends State<MyApp> {
 
                       child: _offline
                           ? Text("Show online tile")
-                          : Text("Show offine tile" ),
+                          : Text("Show offline tile" ),
                     )),
                 visible: (_off_line_tile.urlTemplate != null),
               )
