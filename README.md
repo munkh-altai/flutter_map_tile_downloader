@@ -1,5 +1,7 @@
 # flutter_map_tile_downloader
 
+[![pub package](https://img.shields.io/pub/v/flutter_map_tile_downloader.svg)](https://pub.dev/packages/flutter_map_tile_downloader)
+
 Tile download  by drag draw area
 
 ## Features
@@ -16,18 +18,11 @@ Tile download  by drag draw area
 
 ## Usage
 
-Add flutter_map, dio and  flutter_map_arcgis to your pubspec:
+Add flutter_map_tile_downloader to your pubspec:
 
 ```yaml
 dependencies:
-  flutter_map: any
-  flutter_map_arcgis: any
-  dio: any 
-  permission_handler: any 
-  flutter_range_slider: any 
-  path_provider: any 
-  shared_preferences: any 
-  percent_indicator: any 
+  flutter_map_tile_downloader: any
 ```
 
 Usage example
@@ -192,8 +187,12 @@ Usage example
 See the `example/` folder for a working example app.
 
 #### required permission for Android
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+```xml
+<manifest>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+</manifest>
+```
 
 #### required permission for IOS
 Storage
