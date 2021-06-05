@@ -4,7 +4,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_tile_downloader/flutter_map_tile_downloader.dart';
 
 
-import 'package:latlong/latlong.dart';
+import 'package:latlong2/latlong.dart';
 
 void main() => runApp(MyApp());
 
@@ -67,7 +67,7 @@ class _MyAppState extends State<MyApp> {
       layers.add(
           TileLayerOptions(
             tileProvider: FileTileProvider(),
-            maxZoom: _off_line_tile.maxZoom,
+            maxZoom: _off_line_tile.maxZoom!,
             urlTemplate: _off_line_tile.urlTemplate,
           )
       );

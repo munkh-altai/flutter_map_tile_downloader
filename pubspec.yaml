@@ -9,18 +9,17 @@ author: Khan Khulgun Team
 homepage: https://github.com/munkh-altai/flutter_map_tile_downloader
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  flutter_map: ^0.12.0
+  flutter_map: ^0.13.0
   http: ^0.13.1
   permission_handler: ^6.1.1
-  flutter_range_slider: ^1.5.0
   path_provider: ^2.0.1
   shared_preferences: ^2.0.5
-  percent_indicator: ^2.1.9+1
+  percent_indicator: ^3.0.1
 
 dev_dependencies:
   flutter_test:

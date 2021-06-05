@@ -6,9 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:flutter_map_tile_downloader/utils/util.dart' as util;
-import 'package:flutter_range_slider/flutter_range_slider.dart' as frs;
 import 'package:http/http.dart' as http;
-import 'package:latlong/latlong.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -36,9 +35,9 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
 
   final Map<String, Tile> _tiles = {};
   final Map<double, Level> _levels = {};
-  double _tileZoom;
-  Bounds _globalTileRange;
-  String _dir;
+  double? _tileZoom;
+  Bounds? _globalTileRange;
+  String? _dir;
 
   double _minZoom = 8;
   double _maxZoom = 11;
@@ -92,9 +91,9 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
     if (!crs.infinite) {
       var bounds = _globalTileRange;
       if ((crs.wrapLng == null &&
-              (coords.x < bounds.min.x || coords.x > bounds.max.x)) ||
+              (coords.x < bounds!.min.x || coords.x > bounds.max.x)) ||
           (crs.wrapLat == null &&
-              (coords.y < bounds.min.y || coords.y > bounds.max.y))) {
+              (coords.y < bounds!.min.y || coords.y > bounds.max.y))) {
         return false;
       }
     }
@@ -133,7 +132,7 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
 
     var scale = getZoomScale(zoom, widget.map.zoom);
 
-    return Bounds(nO * scale, sE * scale);
+    return Bounds(nO * scale as CustomPoint<num>, sE * scale as CustomPoint<num>);
   }
 
   Future<File> _downloadFile(String url, String filename, String dir) async {
@@ -149,20 +148,20 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
 
     var tileRange = _pxBoundsToTileRange(pixelBounds);
 
-    var queue = <Coords>[];
+    List<Coords<num>> queue = <Coords>[];
 
     // mark tiles as out of view...
     for (var key in _tiles.keys) {
-      var c = _tiles[key].coords;
+      var c = _tiles[key]!.coords;
       if (c.z != _tileZoom) {
-        _tiles[key].current = false;
+        _tiles[key]!.current = false;
       }
     }
 
     for (var j = tileRange.min.y; j <= tileRange.max.y; j++) {
       for (var i = tileRange.min.x; i <= tileRange.max.x; i++) {
-        var coords = Coords(i.toDouble(), j.toDouble());
-        coords.z = _tileZoom;
+        Coords<double> coords = Coords(i.toDouble(), j.toDouble());
+        coords.z = _tileZoom!;
 
         if (!_isValidTile(coords)) {
           continue;
@@ -206,8 +205,8 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
   }
 
   CustomPoint _getTilePos(Coords coords) {
-    var level = _levels[coords.z];
-    return coords.scaleBy(CustomPoint(256.0, 256.0)) - level.origin;
+    var level = _levels[coords.z as double]!;
+    return coords.scaleBy(CustomPoint(256.0, 256.0)) - level.origin!;
   }
 
   String _tileCoordsToKey(Coords coords) {
@@ -224,12 +223,12 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
       'x': coords.x.round().toString(),
       'y': coords.y.round().toString(),
       'z': coords.z.round().toString(),
-      's': getSubdomain(coords, widget.options.subdomains)
+      's': getSubdomain(coords, widget.options.subdomains!)
     };
 
     var allOpts = Map<String, String>.from(data);
 
-    return util.template(widget.options.urlTemplate, allOpts);
+    return util.template(widget.options.urlTemplate!, allOpts);
   }
 
   LatLng _offsetToCrs(Offset offset) {
@@ -312,7 +311,7 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
             prefs.setString('offline_template_url', "$_dir/offline_map/{z}/{x}/{y}.png");
           });
 
-          widget.options.onComplete();
+          if (widget.options.onComplete != null) widget.options.onComplete!();
 
         }
 
@@ -395,22 +394,26 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
                           child: Text('${_minZoom.round().toString()}'),
                         ),
                         Expanded(
-                          child: frs.RangeSlider(
+                          child: RangeSlider(
                             min: widget.options.minZoom,
                             max: widget.options.maxZoom,
-                            lowerValue: _minZoom,
-                            upperValue: _maxZoom,
+                            values: RangeValues(
+                              _minZoom,
+                              _maxZoom,
+                            ),
                             divisions: devisin.toInt(),
-                            showValueIndicator: true,
-                            valueIndicatorFormatter: (int index, double value) {
+                            labels: RangeLabels(
+                              '${_minZoom.toStringAsFixed(1)}',
+                              '${_maxZoom.toStringAsFixed(1)}',
+                            ),
+                            semanticFormatterCallback: (double value) {
 
                               return '${value.round().toString()}';
                             },
-                            valueIndicatorMaxDecimals: 1,
-                            onChanged: (double newLowerValue, double newUpperValue) {
+                            onChanged: (values) {
                               setState(() {
-                                _minZoom = newLowerValue;
-                                _maxZoom = newUpperValue;
+                                _minZoom = values.start;
+                                _maxZoom = values.end;
                               });
                             },
 
@@ -464,7 +467,7 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
           GestureDetector(
               onPanStart: (details) {
                 setState(() {
-                  RenderBox box = context.findRenderObject();
+                  RenderBox box = context.findRenderObject() as RenderBox;
                   final offset = box.globalToLocal(details.globalPosition);
                   xPos = offset.dx;
                   yPos = offset.dy;
@@ -495,7 +498,7 @@ class _TileDownloadLayerState extends State<TileDownloadLayer> {
               onPanUpdate: (details) {
                 if (_dragging) {
                   setState(() {
-                    RenderBox box = context.findRenderObject();
+                    RenderBox box = context.findRenderObject() as RenderBox;
                     final offset = box.globalToLocal(details.globalPosition);
                     width = offset.dx - xPos;
                     height = offset.dy - yPos;
