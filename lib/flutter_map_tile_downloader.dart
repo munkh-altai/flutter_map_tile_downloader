@@ -7,9 +7,9 @@ export 'tileDownloader/tile_download_layer_options.dart';
 export './tile_downloader_plugin.dart';
 
 class OfflineTile {
-  final String urlTemplate;
-  final double minZoom;
-  final double maxZoom;
+  final String? urlTemplate;
+  final double? minZoom;
+  final double? maxZoom;
   const OfflineTile({
     this.urlTemplate = "",
     this.minZoom = 0,

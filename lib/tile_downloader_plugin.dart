@@ -7,7 +7,7 @@ class TileDownloaderPlugin extends MapPlugin {
   @override
   Widget createLayer(
       LayerOptions options, MapState mapState, Stream<void> stream) {
-    return TileDownloadLayer(options, mapState, stream);
+    return TileDownloadLayer(options as TileDownloadLayerOptions, mapState, stream);
   }
 
   @override
